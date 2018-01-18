@@ -36,5 +36,8 @@
     "rollup-plugin-json": "^2.3.0",
     "rollup-plugin-node-resolve": "^3.0.2",
     "rollup-plugin-uglify": "^2.0.1"
+  },
+  "dependencies": {
+    "github": "^13.1.0"
   }
 }
