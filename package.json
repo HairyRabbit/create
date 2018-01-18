@@ -1,0 +1,40 @@
+{
+  "name": "@rabbitcc/create",
+  "version": "0.0.1",
+  "description": "Create a repo with zero configure.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HairyRabbit/create.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/HairyRabbit/create/issues"
+  },
+  "homepage": "https://github.com/HairyRabbit/create#readme",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.38",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.38",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0-beta.38",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0-beta.38",
+    "@babel/plugin-proposal-throw-expressions": "^7.0.0-beta.38",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.38",
+    "@babel/preset-env": "^7.0.0-beta.38",
+    "@babel/preset-flow": "^7.0.0-beta.38",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^22.1.0",
+    "flow-bin": "^0.63.1",
+    "jest": "^22.1.1",
+    "rollup": "^0.53.4",
+    "rollup-plugin-babel": "^4.0.0-beta.0",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-json": "^2.3.0",
+    "rollup-plugin-node-resolve": "^3.0.2",
+    "rollup-plugin-uglify": "^2.0.1"
+  }
+}
