@@ -4,6 +4,7 @@
   "description": "Create a repo with zero configure.",
   "main": "dist/index.js",
   "scripts": {
+    "start": "yarn build",
     "build": "cross-env NODE_ENV=development yarn rollup -c",
     "build:prod": "cross-env NODE_ENV=production yarn rollup -c",
     "build:type": "flow gen-flow-files lib/index.js > dist/index.js.flow",
