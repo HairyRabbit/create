@@ -26,6 +26,9 @@ test('should read token', () => {
     return {
       readFileSync() {
         return 'bar'
+      },
+      existsSync() {
+        return true
       }
     }
   })
@@ -35,7 +38,7 @@ test('should read token', () => {
 })
 
 
-test('should create token', () => {
+test.only('should create token', () => {
   jest.doMock('path', () => {
     return {
       resolve() {
@@ -50,6 +53,9 @@ test('should create token', () => {
       },
       writeFileSync() {
         return
+      },
+      existsSync() {
+        return false
       }
     }
   })
@@ -60,9 +66,14 @@ test('should create token', () => {
   })
   jest.doMock('@octokit/rest', () => {
     return () => ({
+      authenticate() {
+        return
+      },
       authorization: {
         create() {
-          return Promise.resolve({ token: 'bar' })
+          return Promise.resolve({
+            data: { token: 'bar' }
+          })
         }
       }
     })
@@ -88,6 +99,9 @@ test('should create token failed', () => {
       },
       writeFileSync() {
         return
+      },
+      existsSync() {
+        return true
       }
     }
   })
@@ -98,6 +112,9 @@ test('should create token failed', () => {
   })
   jest.doMock('@octokit/rest', () => {
     return () => ({
+      authenticate() {
+        return
+      },
       authorization: {
         create() {
           return Promise.reject(new Error(42))
@@ -110,22 +127,21 @@ test('should create token failed', () => {
   return expect(github.readToken()).rejects.toThrow()
 })
 
-
-test('should throw when create repo without gh', () => {
-  const Github = require('../lib/platform/github').default
-  const github = new Github()
-  const runner = () => github.createRepo()
-  return expect(runner).toThrow()
-})
-
 test('should create repo', () => {
+  jest.doMock('@octokit/rest', () => {
+    return () => ({
+      authenticate() {
+        return
+      },
+      repos: {
+        create() {
+          return Promise.resolve(42)
+        }
+      }
+    })
+  })
   const Github = require('../lib/platform/github').default
   const github = new Github()
-  github.token = 'foo'
-  github.gh = {
-    repos: {
-      create: jest.fn(() => Promise.resolve(42))
-    }
-  }
+  github.readToken = jest.fn(() => Promise.resolve('foo'))
   return expect(github.createRepo()).resolves.toBe(42)
 })
