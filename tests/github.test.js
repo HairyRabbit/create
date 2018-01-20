@@ -109,3 +109,23 @@ test('should create token failed', () => {
   const github = new Github()
   return expect(github.readToken()).rejects.toThrow()
 })
+
+
+test('should throw when create repo without gh', () => {
+  const Github = require('../lib/platform/github').default
+  const github = new Github()
+  const runner = () => github.createRepo()
+  return expect(runner).toThrow()
+})
+
+test('should create repo', () => {
+  const Github = require('../lib/platform/github').default
+  const github = new Github()
+  github.token = 'foo'
+  github.gh = {
+    repos: {
+      create: jest.fn(() => Promise.resolve(42))
+    }
+  }
+  return expect(github.createRepo()).resolves.toBe(42)
+})
