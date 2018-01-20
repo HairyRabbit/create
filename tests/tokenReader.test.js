@@ -20,6 +20,9 @@ test('should return token string', () => {
     return {
       readFileSync() {
         return 'bar'
+      },
+      existsSync() {
+        return true
       }
     }
   })
@@ -61,6 +64,9 @@ test('should write token string', () => {
     return {
       writeFileSync() {
         writer()
+      },
+      existsSync() {
+        return true
       }
     }
   })

@@ -15,16 +15,16 @@ test('should create repo', () => {
   jest.doMock('../lib/cmdRunner', () => {
     return () => Promise.resolve()
   })
-  jest.doMock('@octokit/rest', () => {
-    return () => ({
-      repos: {
-        create() {
+  jest.doMock('../lib/platform', () => {
+    return {
+      github: class {
+        createRepo() {
           return Promise.resolve({
-            clone_url: 'foo'
+            data: { ssh_url: 'foo' }
           })
         }
       }
-    })
+    }
   })
   process.chdir = jest.fn(() => '')
   const options = {
@@ -45,17 +45,6 @@ test('should reject when run cli failed', () => {
   jest.doMock('../lib/cmdRunner', () => {
     return () => Promise.reject(42)
   })
-  jest.doMock('@octokit/rest', () => {
-    return () => ({
-      repos: {
-        create() {
-          return Promise.resolve({
-            clone_url: 'foo'
-          })
-        }
-      }
-    })
-  })
   process.chdir = jest.fn(() => '')
   const options = {
     cmd: 'foo',
@@ -75,14 +64,14 @@ test('should reject when create repo failed', () => {
   jest.doMock('../lib/cmdRunner', () => {
     return () => Promise.resolve()
   })
-  jest.doMock('@octokit/rest', () => {
-    return () => ({
-      repos: {
-        create() {
+  jest.doMock('../lib/platform', () => {
+    return {
+      github: class {
+        createRepo() {
           return Promise.reject(42)
         }
       }
-    })
+    }
   })
   process.chdir = jest.fn(() => '')
   const options = {
