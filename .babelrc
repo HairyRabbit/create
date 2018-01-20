@@ -1,6 +1,6 @@
 {
     "presets": [
-        "@babel/preset-react",
+        // "@babel/preset-react",
         "@babel/preset-flow",
         ["@babel/preset-env", {
             "target": {
@@ -17,7 +17,7 @@
             "useBuiltIns": true
         }],
         "@babel/plugin-syntax-dynamic-import",
-        "babel-plugin-lodash"
+        // "babel-plugin-lodash"
     ],
     "env": {
         "test": {
