@@ -4,7 +4,7 @@
   "description": "Create a repo with zero configure.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,8 @@
     "rollup-plugin-uglify": "^2.0.1"
   },
   "dependencies": {
-    "github": "^13.1.0"
+    "@octokit/rest": "^14.0.4",
+    "github": "^13.1.0",
+    "github-api": "^3.0.0"
   }
 }
