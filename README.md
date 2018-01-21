@@ -1,4 +1,6 @@
-## Create you project easy integrate cli and VC platform
+## Usage
+
+Create you project that easy integrate cli and VC platform, Just use create wrap the project-init style cli, e.g:
 
 ```js
 create create-react-app repo
