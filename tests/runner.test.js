@@ -12,6 +12,16 @@ test('should create repo', () => {
       sync(cmd) { return cmd }
     }
   })
+  jest.doMock('fs', () => {
+    return {
+      writeFileSync() {
+        return
+      },
+      existsSync() {
+        return true
+      }
+    }
+  })
   jest.doMock('../lib/cmdRunner', () => {
     return () => Promise.resolve()
   })
